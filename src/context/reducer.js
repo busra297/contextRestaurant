@@ -4,6 +4,10 @@ export function reducer(state, action) {
             state.selectedCity = action.city
             return { ...state }
 
+        case "SET_RESTAURANTS":
+            state.restaurantList = action.resList
+            return { ...state }
+
         default:
             return state
     }

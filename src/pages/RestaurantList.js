@@ -8,13 +8,12 @@ import styles from '../styles'
 
 const RestaurantList = props => {
     const { state, dispatch } = useContext(Context)
-    const [restaurants, setRestaurants] = useState([])
 
     useEffect(() => { fetchData() }, [])
 
     const fetchData = async () => {
         let response = await axios.get("https://opentable.herokuapp.com/api/restaurants?city=" + state.selectedCity)
-        setRestaurants(response.data.restaurants)
+        dispatch({ type: "SET_RESTAURANTS", resList: response.data.restaurants })
     }
 
     const renderRestaurants = ({ item }) => <RestaurantItem restaurantData={item} />
@@ -28,7 +27,7 @@ const RestaurantList = props => {
 
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
-                    data={restaurants}
+                    data={state.restaurantList}
                     renderItem={renderRestaurants}
                     ItemSeparatorComponent={() => <View style={{ borderWidth: 1, borderColor: '#e0e0e0' }} />}
                 />

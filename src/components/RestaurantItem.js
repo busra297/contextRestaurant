@@ -4,7 +4,10 @@ import styles from '../styles'
 
 const RestaurantItem = props => {
     return (
-        <TouchableOpacity style={styles.components.restaurantItem.container}>
+        <TouchableOpacity
+            style={styles.components.restaurantItem.container}
+            
+        >
             <Text style={styles.components.restaurantItem.name}>{props.restaurantData.name}</Text>
         </TouchableOpacity>
     )
